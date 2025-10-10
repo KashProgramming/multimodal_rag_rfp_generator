@@ -3,6 +3,7 @@ streamlit
 python-docx
 PyPDF2
 pymupdf
+reportlab
 pandas
 openpyxl
 Pillow
