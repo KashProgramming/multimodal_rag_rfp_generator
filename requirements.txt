@@ -1,5 +1,4 @@
 pysqlite3-binary
-python-decouple
 streamlit
 python-docx
 PyPDF2
@@ -10,7 +9,7 @@ Pillow
 opencv-python
 numpy
 easyocr
-transformers
+sentence-transformers
 torch
 torchvision
 openai-whisper
