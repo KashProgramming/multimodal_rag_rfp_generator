@@ -60,7 +60,7 @@ DB_CONFIG = {
 def create_ollama_llm():
     """Create and return an LLM instance using API"""
     api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
-    model_name = "llama-3.1-8b-instant"
+    model_name = "qwen/qwen3-32b"
     return ChatGroq(model=model_name, groq_api_key=api_key)
     
 
