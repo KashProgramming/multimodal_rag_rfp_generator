@@ -24,10 +24,13 @@ def get_blip_model():
     global _blip_model, _blip_processor, _device
     if _blip_model is None:
         _device = "cuda" if torch.cuda.is_available() else "cpu"
-        local_path = "./models/blip-large"
-        tokenizer = AutoTokenizer.from_pretrained(local_path, use_fast=False)
-        _blip_processor = BlipProcessor.from_pretrained(local_path, tokenizer=tokenizer)
-        _blip_model = BlipForConditionalGeneration.from_pretrained(local_path).to(_device)
+        # local_path = "./models/blip-large"
+        # tokenizer = AutoTokenizer.from_pretrained(local_path, use_fast=False)
+        # _blip_processor = BlipProcessor.from_pretrained(local_path, tokenizer=tokenizer)
+        # _blip_model = BlipForConditionalGeneration.from_pretrained(local_path).to(_device)
+        tokenizer = AutoTokenizer.from_pretrained("Salesforce/blip-image-captioning-large", use_fast=False)
+        processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large", tokenizer=tokenizer)
+        model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
     return _blip_model, _blip_processor, _device
 
 def extract_image_text_easyocr(file):
