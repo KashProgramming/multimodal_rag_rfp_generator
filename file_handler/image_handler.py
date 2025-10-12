@@ -31,7 +31,7 @@ def get_blip_model():
         tokenizer = AutoTokenizer.from_pretrained("Salesforce/blip-image-captioning-large", use_fast=False)
         processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large", tokenizer=tokenizer)
         model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
-    return _blip_model, _blip_processor, _device
+    return model, processor, _device
 
 def extract_image_text_easyocr(file):
     """Extract text from image using EasyOCR"""
