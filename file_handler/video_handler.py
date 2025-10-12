@@ -21,12 +21,15 @@ def get_models():
         _whisper_model = whisper.load_model("base")
     if _blip_model is None:
         _device = "cuda" if torch.cuda.is_available() else "cpu"
-        local_path = "./models/blip-large"
-        _blip_processor = BlipProcessor.from_pretrained(local_path)
-        _blip_model = BlipForConditionalGeneration.from_pretrained(local_path).to(_device)
+        # local_path = "./models/blip-large"
+        # _blip_processor = BlipProcessor.from_pretrained(local_path)
+        # _blip_model = BlipForConditionalGeneration.from_pretrained(local_path).to(_device)
+        tokenizer = AutoTokenizer.from_pretrained("Salesforce/blip-image-captioning-large", use_fast=False)
+        processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large", tokenizer=tokenizer)
+        model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
     if _easyocr_reader is None:
         _easyocr_reader = easyocr.Reader(['en'])
-    return _whisper_model, _blip_model, _blip_processor, _easyocr_reader, _device
+    return _whisper_model, model, processor, _easyocr_reader, _device
 
 def extract_video_content(video_path):
     """Extract content from video using a comprehensive pipeline"""
