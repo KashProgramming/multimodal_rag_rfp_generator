@@ -18,10 +18,10 @@ from file_handler.txt_handler import extract_txt_text
 from file_handler.video_handler import extract_video_content
 
 # RAG imports
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_core.documents import Document
+from langchain.schema import Document
 import time
 
 # DB imports
