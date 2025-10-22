@@ -21,7 +21,7 @@ from file_handler.video_handler import extract_video_content
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.schema import Document
+from langchain_core.documents import Document
 import time
 
 # DB imports
