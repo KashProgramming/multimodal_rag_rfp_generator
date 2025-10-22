@@ -18,7 +18,7 @@ from file_handler.txt_handler import extract_txt_text
 from file_handler.video_handler import extract_video_content
 
 # RAG imports
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
