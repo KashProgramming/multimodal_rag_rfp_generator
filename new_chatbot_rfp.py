@@ -105,7 +105,8 @@ def create_chunks(file):
 def create_vector_db(all_chunks):
     """Create embeddings and vector store"""
     print("Creating embeddings and vector store...")
-    embeddings = HuggingFaceEmbeddings(model_name="./models/all-MiniLM-L6-v2")
+    # embeddings = HuggingFaceEmbeddings(model_name="./models/all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     # Create a collection
     collection_name = f"file_collection_{int(time.time())}"
     vector_store = Chroma(
