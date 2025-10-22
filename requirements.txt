@@ -15,6 +15,7 @@ torch
 torchvision
 openai-whisper
 langchain
+langchain-core
 langchain-community
 langchain-chroma
 langchain-huggingface
