@@ -338,21 +338,25 @@ def create_combined_agent_executor(vectorstore):
         )
     )
 
-    template=(
-        "You are an intelligent assistant with access to both a database and a document collection.\n\n"
-        "TOOLS:\n{tools}\n\n"
-        "ROUTING GUIDELINES:\n"
-        "1. Use DatabaseQuery for structured data (e.g., count, total, SQL-related questions).\n"
-        "2. Use DocumentSearch for conceptual or text-based information.\n"
-        "3. Use both tools if the question requires data from both.\n"
-        "4. Always include the source of answers retrieved.\n"
-        "5. Stop once you have the final answer.\n\n"
-        "FORMAT:\n"
-        "Question: {input}\nThought: {agent_scratchpad}\n"
-        "Action: one of [{tool_names}]\nAction Input: input to the action\nObservation: result\n"
-        "... (Repeat up to 5 times)\n"
-        "Thought: I now know the final answer\nFinal Answer: combine insights from all tools\n\n"
-        "Begin!\nQuestion: {input}\nThought: {agent_scratchpad}"
+    template=("""You are an intelligent assistant with access to both a database and a document collection.
+        TOOLS:\n{tools}\n
+        ROUTING GUIDELINES:\n
+        1. Use DatabaseQuery for structured or numerical data (e.g., products, prices, customers, contacts, invoices, SQL-like queries).\n
+        2. Use DocumentSearch for conceptual or descriptive information (e.g., explanations, procedures, policies, meanings).\n
+        3. Use both tools when:
+        - The question needs both structured data and conceptual info
+        - One tool's result leads to querying the other
+        - Additional context is needed for a complete answer
+        - One tool's result means 'I don't know' or 'I cannot answer' or 'insufficient context'.\n
+        4. Always include the source of answers retrieved (section, page, or table name).\n
+        5. Stop once you have a complete, well-supported final answer.\n\n
+        FORMAT:\n
+        Question: {input}\nThought: {agent_scratchpad}\n
+        Action: one of [{tool_names}]\nAction Input: input to the action\nObservation: result\n
+        ... (Repeat up to 5 times)\n
+        Thought: I now know the final answer\nFinal Answer: combine insights from all tools\n
+        Begin!\nQuestion: {input}\nThought: {agent_scratchpad}
+        """
     )
 
     prompt=PromptTemplate(
